@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  db:
+    image: mariadb:latest
+    container_name: classified-ads-db-dev
+    env_file:
+      - .env
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - ./mysql-data/db/dump.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./mysql-data/restart_data:/restart_data/
+  api:
+    container_name: classified-ads-api-dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./:/home/app

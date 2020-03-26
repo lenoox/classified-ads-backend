@@ -29,3 +29,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#.config
+.env
+.env.dev
+/mysql-data/db/dump.sql
