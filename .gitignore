@@ -30,7 +30,7 @@ build/
 ### VS Code ###
 .vscode/
 
-#.config
+### config ###
 .env
 .env.dev
 /mysql-data/db/dump.sql
