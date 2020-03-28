@@ -1,14 +1,14 @@
 # Classified Ads Backend
 Classified Ads - Spring Api 
-##Technology Stack
+## Technology Stack
  - Git flow
  - Docker
  - MariaDB
  - Spring Boot
- - [OpenJDK](https://openjdk.java.net/)
-##Requirements
+ - [OpenJDK](https://openjdk.java.net/)*
+## Requirements
  - [Docker](https://www.docker.com/)
-##Run locally
+## Run locally
  - Install Docker and Docker Compose.
  - Copy .env.example file to .env and edit database credentials there.
  - Copy dump.example.sql file to dump.sql in ./mysql-data/db/
