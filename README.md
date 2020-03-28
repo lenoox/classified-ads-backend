@@ -3,6 +3,7 @@ Classified Ads - Spring Api
 ## Technology Stack
  - Git flow
  - Docker
+ - Swagger2
  - MariaDB
  - Spring Boot
  - [OpenJDK](https://openjdk.java.net/)*
@@ -20,7 +21,11 @@ Classified Ads - Spring Api
 ```
  DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker-compose.dev.yml up --build
 ```
- - Start http://localhost:8081 in your browser.
+ - Run in browser
+    - with swagger:
+        - Start http://localhost:8081/swagger-ui.html to test all endpoints
+    - without swagger:
+        - Start http://localhost:8081/api/v1/items in your browser/postman.
 
 
 *OpenJDK can be used only for non-commercial purposes!
