@@ -11,14 +11,14 @@ Classified Ads - Spring Api
 ##Run locally
  - Install Docker and Docker Compose.
  - Copy .env.example file to .env and edit database credentials there.
- - Create dump.sql in ./mysql-data/db/
- - Run command in your terminal to build container:
+ - Copy dump.example.sql file to dump.sql in ./mysql-data/db/
+ - Run command in your terminal to create network:
 ```
-docker-compose -f docker-compose.dev.yml build
+ docker network create api-network
 ```
  - Run command in your terminal to start container: 
 ```
- docker-compose -f docker-compose.dev.yml up -d
+ DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker-compose.dev.yml up --build
 ```
  - Start http://localhost:8081 in your browser.
 
