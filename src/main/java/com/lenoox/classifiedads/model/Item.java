@@ -1,4 +1,4 @@
-package com.lenoox.classifiedads;
+package com.lenoox.classifiedads.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;

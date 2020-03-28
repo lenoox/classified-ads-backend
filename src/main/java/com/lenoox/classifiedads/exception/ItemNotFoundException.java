@@ -1,4 +1,4 @@
-package com.lenoox.classifiedads.error;
+package com.lenoox.classifiedads.exception;
 
 public class ItemNotFoundException extends RuntimeException {
 

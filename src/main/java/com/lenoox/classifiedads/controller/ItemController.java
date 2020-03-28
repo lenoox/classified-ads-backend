@@ -1,6 +1,8 @@
-package com.lenoox.classifiedads;
+package com.lenoox.classifiedads.controller;
 
-import com.lenoox.classifiedads.error.ItemNotFoundException;
+import com.lenoox.classifiedads.model.Item;
+import com.lenoox.classifiedads.repository.ItemRepository;
+import com.lenoox.classifiedads.exception.ItemNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

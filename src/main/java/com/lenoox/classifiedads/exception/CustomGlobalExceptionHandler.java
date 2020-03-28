@@ -1,4 +1,4 @@
-package com.lenoox.classifiedads.error;
+package com.lenoox.classifiedads.exception;
 
 
 import org.springframework.http.HttpStatus;
