@@ -5,7 +5,7 @@ Classified Ads - Spring Api
  - Docker
  - MariaDB
  - Spring Boot
- - [OpenJDK](https://openjdk.java.net/)*
+ - [OpenJDK](https://openjdk.java.net/)
 ##Requirements
  - [Docker](https://www.docker.com/)
 ##Run locally
