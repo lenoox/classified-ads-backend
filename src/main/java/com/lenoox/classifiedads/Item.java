@@ -1,6 +1,7 @@
 package com.lenoox.classifiedads;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,12 +14,14 @@ public class Item {
 
     @Id
     @GeneratedValue
+    @ApiModelProperty(hidden = true)
     private Long id;
     private String name;
     private Integer price;
     private String state;
     private String color;
     private String description;
+    @ApiModelProperty(hidden = true)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date dateCreated;
     public Item() {
