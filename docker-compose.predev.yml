@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+  databasepredev:
+    image: mariadb:latest
+    container_name: databasepredev
+    env_file:
+      - .env
+    ports:
+      - 3307:3306
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - ./mysql-data/db/dump.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./mysql-data/restart_data:/restart_data/
+  apipredev:
+    container_name: apipredev
+    build:
+      context: .
+      dockerfile: Dockerfile-predev
+    ports:
+      - 8081:8080
+    volumes:
+      - ./:/home/apps

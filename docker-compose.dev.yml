@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+  apidev:
+    container_name: apidev
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/home/app
