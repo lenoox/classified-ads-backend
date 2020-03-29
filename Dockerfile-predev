@@ -14,4 +14,4 @@ RUN mkdir -p /home/wait
 COPY --from=build  /home/app/wait-for.sh /home/wait/wait-for.sh
 
 COPY --from=build  /home/app/target/*.jar /usr/local/lib/app.jar
-ENTRYPOINT ["sh","./home/wait/wait-for.sh","--timeout=260","database:3306","--","java","-jar","/usr/local/lib/app.jar"]
+ENTRYPOINT ["sh","./home/wait/wait-for.sh","--timeout=200","databasepredev:3306","--","java","-jar","-Dspring.profiles.active=predev","/usr/local/lib/app.jar"]

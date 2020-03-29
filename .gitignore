@@ -34,3 +34,5 @@ build/
 .env
 .env.dev
 /mysql-data/db/dump.sql
+/src/main/resources/application-predev.properties
+/src/main/resources/application-dev.properties

@@ -1,31 +1,11 @@
 version: '3.5'
 services:
-  database:
-    image: mariadb:latest
-    container_name: database
-    env_file:
-      - .env
-    ports:
-      - 3306:3306
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MYSQL_DATABASE: "${MYSQL_DATABASE}"
-      MYSQL_USER: "${MYSQL_USER}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-    volumes:
-      - ./mysql-data/db/dump.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./mysql-data/restart_data:/restart_data/
-  api:
-    container_name: api
+  apidev:
+    container_name: apidev
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
     ports:
-      - 8081:8080
+      - 8080:8080
     volumes:
       - ./:/home/app
-networks:
-  default:
-    external: true
-    name: api-network
