@@ -37,11 +37,6 @@ You can choose predev or dev docker-compose config. Only predev config is with d
  - Make a copy of these files and change its names to the ones below:
     - .env.example to .env - then edit database credentials there.
     - application-predev.properties.example to application-predev.properties - then paste the credentials from .env file there.
- - Run command in your terminal and type root account password (which is MYSQL_ROOT_PASSWORD value in .env file) to insert data in mysql container:
-```
-docker exec -it databasepredev sh
-sh ./insert_data/insert.sh 
-```
  - Run command to create network:
 ```
  docker network create api-network
@@ -49,6 +44,11 @@ sh ./insert_data/insert.sh
  - In your terminal go to the project folder and run a command to start the container: 
 ```
  DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker-compose.predev.yml up --build
+```
+ - Run command in your terminal and type root account password (which is MYSQL_ROOT_PASSWORD value in .env file) to insert data in mysql container:
+```
+docker exec -it databasepredev sh
+sh ./insert_data/insert.sh 
 ```
  - Run in a browser
     - with swagger:
