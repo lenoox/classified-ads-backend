@@ -1,36 +1,59 @@
 package com.lenoox.classifiedads.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 
 @Entity
+@Data
+@ToString(exclude = "condition")
+@EqualsAndHashCode(exclude = "condition")
+//@RequiredArgsConstructor
+//@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Item {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(hidden = true)
     private Long id;
+
+    @NonNull
     private String name;
+
+    @NonNull
     private Integer price;
-    private String state;
+
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "item_condition_id")
+    private Condition condition;
+
+    @NonNull
     private String color;
+
+    @NonNull
     private String description;
+
     @ApiModelProperty(hidden = true)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date dateCreated;
+
+
     public Item() {
     }
 
-    public Item(String name, Integer price, String state, String color, String description) {
+    public Item(String name, Integer price, Condition condition, String color, String description) {
         this.name = name;
         this.price = price;
-        this.state = state;
+        this.condition = condition;
         this.color = color;
         this.description = description;
         this.setDateCreated();
@@ -60,14 +83,6 @@ public class Item {
         this.price = price;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getColor() {
         return color;
     }
@@ -92,5 +107,13 @@ public class Item {
         Calendar cal = Calendar.getInstance();
         Date date=cal.getTime();
         this.dateCreated = date;
+    }
+
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
     }
 }

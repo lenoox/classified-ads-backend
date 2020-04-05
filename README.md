@@ -1,5 +1,6 @@
 # Classified Ads Backend
-Classified Ads - Spring Api 
+Classified Ads - Spring Api <br />
+Project Classified Ads has frontend repository in [Classified Ads - Frontend](https://github.com/lenoox/classified-ads-frontend)
 ### Technology Stack
  - Git flow
  - Docker
@@ -14,13 +15,13 @@ Classified Ads - Spring Api
 #### Run project
 
  - Install OpenJDK or JDK.
- - Import dump.example.sql file to your database from ./mysql-data/db/ directory.
  - Make a copy of the application-dev.properties.example file and rename it to application-dev.properties - then edit the database credentials there.
  - In your terminal go to the project folder and run a command to start the project:
 ```
 /mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 ```
  _In Spring right now the dev profile is recommended._
+ - Import insert.sql file to your database from ./mysql-data/insert_data/ directory.
  - Run in a browser
     - with swagger:
         - Start http://localhost:8081/swagger-ui.html to test all endpoints
@@ -36,8 +37,12 @@ You can choose predev or dev docker-compose config. Only predev config is with d
  - Make a copy of these files and change its names to the ones below:
     - .env.example to .env - then edit database credentials there.
     - application-predev.properties.example to application-predev.properties - then paste the credentials from .env file there.
-    - dump.example.sql to dump.sql in ./mysql-data/db/
- - Run command in your terminal to create network:
+ - Run command in your terminal and type root account password (which is MYSQL_ROOT_PASSWORD value in .env file) to insert data in mysql container:
+```
+docker exec -it databasepredev sh
+sh ./insert_data/insert.sh 
+```
+ - Run command to create network:
 ```
  docker network create api-network
 ```

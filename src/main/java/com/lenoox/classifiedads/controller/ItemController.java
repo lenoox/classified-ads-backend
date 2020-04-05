@@ -1,6 +1,9 @@
 package com.lenoox.classifiedads.controller;
 
+import com.lenoox.classifiedads.exception.ConditionNotFoundException;
+import com.lenoox.classifiedads.model.Condition;
 import com.lenoox.classifiedads.model.Item;
+import com.lenoox.classifiedads.repository.ConditionRepository;
 import com.lenoox.classifiedads.repository.ItemRepository;
 import com.lenoox.classifiedads.exception.ItemNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,8 @@ public class ItemController {
 
     @Autowired
     private ItemRepository repository;
+    @Autowired
+    private ConditionRepository conditionRepository;
 
     @GetMapping()
     List<Item> findAll(){
@@ -25,6 +30,13 @@ public class ItemController {
     @ResponseStatus(HttpStatus.CREATED)
     Item newItem(@RequestBody Item newItem){
         newItem.setDateCreated();
+        String conditionName = newItem.getCondition().getName();
+        Condition proxy = conditionRepository
+                .findByName(conditionName)
+                .orElseThrow(() -> new ConditionNotFoundException(conditionName));
+
+        newItem.setCondition(proxy);
+
         return repository.save(newItem);
     }
 
@@ -36,11 +48,13 @@ public class ItemController {
 
     @PutMapping("/{id}")
     Item saveOrUpdate(@RequestBody Item newItem, @PathVariable Long id){
+
         return repository.findById(id)
                 .map(x -> {
                     x.setName(newItem.getName());
                     x.setPrice(newItem.getPrice());
-                    x.setState(newItem.getState());
+                    Condition proxy = conditionRepository.findOneByName(newItem.getCondition().getName());
+                    x.setCondition(proxy);
                     x.setColor(newItem.getColor());
                     x.setDescription(newItem.getDescription());
                     x.setDateCreated();
@@ -51,6 +65,7 @@ public class ItemController {
                     return repository.save(newItem);
                 });
     }
+
     @DeleteMapping("/{id}")
     void deleteItem(@PathVariable Long id){ repository.deleteById(id); }
 }
