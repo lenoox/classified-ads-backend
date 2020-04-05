@@ -12,7 +12,7 @@ import java.io.IOException;
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(ItemNotFoundException.class)
+    @ExceptionHandler({ItemNotFoundException.class,ConditionNotFoundException.class})
     public void springHandleNotFound(HttpServletResponse response) throws IOException{
         response.sendError(HttpStatus.NOT_FOUND.value());
     }

@@ -14,8 +14,7 @@ services:
       MYSQL_USER: "${MYSQL_USER}"
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
     volumes:
-      - ./mysql-data/db/dump.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./mysql-data/restart_data:/restart_data/
+      - ./mysql-data/insert_data:/insert_data/
   apipredev:
     container_name: apipredev
     build:
